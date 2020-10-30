@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>js deneme</title>
+
+    </head>
+
+    <body>
+       <form  style="border:3;background-color: cornflowerblue;width: 10cm;">
+        <br>
+
+            <div class="form" style="font-size: 0.5cm ;color: cornsilk; font-style: italic;  ">
+                İsim/ Soyisim:   <input type="text" id="isim" value=" ">
+            <br><br>
+            Doğum Günü: 
+            <input type="number" id="gun" value="">
+            <br><br>
+            Doğum Yılı: 
+            <input type="number" id="yil" value="">
+            <br><br>
+            Doğum Ayı:  
+            <select name="ay" id="ay" >
+                <option value="1">Ocak</option>
+                <option value="2">Şubat</option>
+                <option value="3">Mart</option>
+                <option value="4">Nisan</option>
+                <option value="5">Mayıs</option>
+                <option value="6">Haziran</option>
+                <option value="7">Temmuz</option>
+                <option value="8">Ağustos</option>
+                <option value="9">Eylül</option>
+                <option value="10">Ekim</option>
+                <option value="11">Kasım</option>
+                <option value="12">Aralık</option>
+            </select>
+            <br><br>
+            Doğum Saati:    
+            <input type="time" id="saat" value=" ">
+            <button type="submit" id="hesaplama">Hesapla</button>
+            </div>
+       </form>
+        <script>
+            var btn=document.getElementById("hesaplama");
+            btn.onclick=function(){
+                var saat=document.getElementById("saat");
+                var isim=document.getElementById("isim");
+                var gun=document.getElementById("gun");
+                var ay =document.getElementById("ay");
+                var yil=document.getElementById("yil");
+                window.alert("Sayın "+isim.value + " " +gun.value+"/"+ay.value+"/"+yil.value+" tarihinde saat "+ saat.value + " de doğdunuz\n");
+                //document.write("Sayın "+isim.value + " " +gun.value+"/"+ay.value+"/"+yil.value+" tarihinde saat "+ saat.value + " de doğdunuz");
+                var a=Number(gun.value);
+                var b=Number(ay.value);
+                var c=Number(yil.value);
+              //  document.write(b+" "+typeof b);
+                burcHesapla(a,b-1,c);
+                hayatınıHesapla(a,b-1,c);
+
+
+            }
+
+            function burcHesapla(gun,ay,yil){
+              var d=new Date(yil,ay,gun);
+              if((d.getDate()>=21 && d.getMonth()==0) || (d.getDate()<=18 && d.getMonth()==1)) window.alert("Kova burcusunuz");
+              else if((d.getDate()>=19 && d.getMonth()==1) || (d.getDate()<=20 && d.getMonth()==2)) window.alert("Balık burcusunuz");
+              else if((d.getDate()>=21 && d.getMonth()==2) || (d.getDate()<=20 && d.getMonth()==3)) window.alert("Koç burcusunuz");
+              else if((d.getDate()>=21 && d.getMonth()==3) || (d.getDate()<=20 && d.getMonth()==4)) window.alert("Boğa burcusunuz");
+              else if((d.getDate()>=21 && d.getMonth()==4) || (d.getDate()<=21 && d.getMonth()==5)) window.alert("İkizler burcusunuz");
+              else if((d.getDate()>=22 && d.getMonth()==5) || (d.getDate()<=22 && d.getMonth()==6))window.alert("Yengeç burcusunuz");
+              else if((d.getDate()>=23 && d.getMonth()==6) || (d.getDate()<=22 && d.getMonth()==7))window.alert("Aslan burcusunuz");
+              else if((d.getDate()>=23 && d.getMonth()==7) || (d.getDate()<=22 && d.getMonth()==8)) window.alert("Başak burcusunuz");
+              else if((d.getDate()>=23 && d.getMonth()==8) || (d.getDate()<=23 && d.getMonth()==9)) window.alert("Terazi burcusunuz");
+              else if((d.getDate()>=24 && d.getMonth()==9) || (d.getDate()<=22 && d.getMonth()==10)) window.alert("Akrep burcusunuz");
+              else if((d.getDate()>=23 && d.getMonth()==10) || (d.getDate()<=22 && d.getMonth()==11)) window.alert("Yay burcusunuz");
+              else  window.alert("Oğlak burcusunuz");
+              return;
+
+
+
+            }
+            function hayatınıHesapla(gun,ay,yil){
+                var suan=new Date();
+                var d=new Date(yil,ay,gun);
+                var yasi=Date.now()-d.getTime();  
+                var suankiyas= new Date(yasi);
+                var a=suan.getMonth()-d.getMonth();
+                var b=(suan.getDate()-d.getDate());
+                if (a<0)a=12+a;
+                if(b<0)b=30+b;
+
+                window.alert("\n"+(suankiyas.getFullYear()-1970) + " yıl " + a + " ay "+ b+ " gündür hayattasınız.");
+            }
+        </script>
+
+
+    </body>
+</html>
